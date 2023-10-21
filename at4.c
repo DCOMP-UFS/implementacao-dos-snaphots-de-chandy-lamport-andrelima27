@@ -7,7 +7,7 @@
 #define QUEUE_SIZE 10
 
 // mpicc -o at4 at4.c -lpthread
-// mpiexec -n 3 ./at3
+// mpiexec -n 3 ./at4
 
 typedef struct {
   int p[3]; // Vetor de relógios
@@ -198,6 +198,7 @@ void process0() {
 
 void process1() {
   Send(0);
+  StartSnapshot();
   Clock received_clock;
   Receive(&received_clock);
   Receive(&received_clock);
@@ -207,6 +208,7 @@ void process1() {
 void process2() {
   Event();
   Send(0);
+  StartSnapshot();
   Clock received_clock;
   Receive(&received_clock);
   RecordState();
